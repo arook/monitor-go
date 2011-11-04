@@ -1,4 +1,4 @@
-package main
+package monitor
 
 import (
   "fmt"
@@ -13,7 +13,20 @@ type result struct {
   content []byte
 }
 
+var store *MonitorStore
+
 func main() {
+  db := "monitor.db"
+  store = NewMonitorStore(db)
+  //store.AddAsin(`xxxx`)
+  //store.AddAsin(`yyyy`)
+  //store.AddAsin(`zzzz`)
+  //store.AddAsin(`aaaa`)
+  list := store.GetAsinList()
+  fmt.Println(len(list))
+}
+
+func main1() {
   c := make(chan *result, 100)
 
   req := []string{
